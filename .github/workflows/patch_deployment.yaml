@@ -85,8 +85,10 @@ jobs:
         env=stage
         timestamp=$(date +%Y%m%d%H%M%S)
         STAGE_TAG=$env-$VERSION_TAG-$timestamp
+        echo "STAGE_TAG"
 
         echo "Build docker image"
+        echo "$REGISTRY/$ECR_REPOSITORY:$VERSION_TAG"
         docker build -t $REGISTRY/$ECR_REPOSITORY:$VERSION_TAG .
         echo "Push docker version image"
         docker push $REGISTRY/$ECR_REPOSITORY:$VERSION_TAG
